@@ -6,7 +6,6 @@ import {
   Content,
   ContentHeader,
   HeaderLabel,
-  SupportButton,
 } from '@backstage/core-components';
 import { ChatGptPlayground } from '../ChatGptPlayground';
 
@@ -18,16 +17,8 @@ export const ChatGPTPage = () => (
     </Header>
     <Content>
       <ContentHeader title="ChatGPT Playground">
-        <SupportButton>Get a code snippet from a small prompt!</SupportButton>
       </ContentHeader>
       <Grid container spacing={3} direction="column">
-        {/* <Grid item>
-          <InfoCard title="Information card">
-            <Typography variant="body1">
-              All content should be wrapped in a card like this.
-            </Typography>
-          </InfoCard>
-        </Grid> */}
         <Grid item>
           <ChatGptPlayground />
         </Grid>

@@ -2,13 +2,11 @@
 import React from 'react';
 import { Button } from '@material-ui/core';
 import './ChatGptPlayground.css'
+import { ButtonPannelProps } from './types';
 
 const supportedFrameworks  = ['react', 'angular', 'vue']
 
-interface ButtonPannelProps {
-    selected: string
-    setFrameworkCallback: (framework: string) => void
-}
+
 interface CustomButtomProps {
     selected: string
     framework:string,

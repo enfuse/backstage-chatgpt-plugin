@@ -1,3 +1,7 @@
+:root {
+    --text-primary: #252152;
+}
+
 .chatgpt-playground{
     display: flex;
     flex-direction: column;
@@ -17,3 +21,30 @@
 .button-pannel button {
     margin-right: 10px;
 }
+
+.error-message {
+    background-color: aquamarine;
+}
+
+.loading {
+    align-self: center;
+}
+.loading:after {
+    content: " ";
+    display: inline-block;
+    width: 64px;
+    height: 64px;
+    margin: 8px;
+    border-radius: 50%;
+    border: 6px solid var(--text-primary);
+    border-color: var(--text-primary) transparent var(--text-primary) transparent;
+    animation: lds-dual-ring 1.2s linear infinite;
+}
+@keyframes lds-dual-ring {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}  

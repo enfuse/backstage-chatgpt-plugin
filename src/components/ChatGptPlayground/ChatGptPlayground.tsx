@@ -1,82 +1,63 @@
 import React from 'react';
-import { Button, Input, Paper, TextField } from '@material-ui/core';
-import { useStyles } from '../common/styles';
+import { Button, Paper } from '@material-ui/core';
 import { useApi, configApiRef } from '@backstage/core-plugin-api';
-import axios from 'axios'
-// import { CopyBlock } from "react-code-blocks";
+import "./ChatGptPlayground.css"
+import {getChatGptCompletion} from '../../client/chatgpt'
+import { Form } from './Form';
+import { CodeBoxProps } from './types';
+
 
 export const ChatGptPlayground = () => {
-  const [frameworkSelected, setFramework] = React.useState('react')
-  const [functionality, setFunctionality] = React.useState('')
-  const [stylying, setStyling] = React.useState('')
-  const [codeSnippets , setCodeSnippets] = React.useState({})
-  const [currentSnippet , setCurrentSnippet] = React.useState('')
-  const classes = useStyles()
+
   const config = useApi(configApiRef)
+  const [functionality, setFunctionality] = React.useState('')
+  const [stylying, setStyling] = React.useState<string>('')
+  const [codeSnippet , setCurrentSnippet] = React.useState<string|null>(null)
+  const [selectedFramework, setFramework] = React.useState('react')
+  const [error , setError] = React.useState<any>(null)
+  const [loading , setLoading] = React.useState<boolean>(false)
   const baseUrl = config.getString('backend.baseUrl')
-  const getChatGptCompletion = (framework: string, functionality:string, styling: string ) => {
-    axios.get(`${baseUrl}/api/chatgpt/completion`,{
-    params:{
-      framework: framework,
-      functionality: functionality,
-      styling: styling
-    }})
+
+  const onSubmit = () => {
+    setLoading(true)
+    getChatGptCompletion(baseUrl, selectedFramework, functionality, stylying)
     .then(response => {
-      console.log("ChatGPT response:", response.data)
       setCurrentSnippet(response.data?.completion)
+      setLoading(false)
     })
-    .catch(e=>console.log(e))
-    
-}
-  return <>
-    <Button variant={frameworkSelected == "react" ? "contained" : "outlined"}
-      color="primary"
-      onClick={()=>setFramework('react')}> React</Button>
-    <Button variant={frameworkSelected == "angular" ? "contained" : "outlined"}
-      color="primary"
-      onClick={()=>setFramework('angular')}> Angular</Button>
-    <Button variant={frameworkSelected == "vue" ? "contained" : "outlined"}
-      color="primary"
-      onClick={()=>setFramework('vue')}> Vue</Button>
-      <br/>
-    <TextField id="standard-basic"
-               label="Functionality"
-               variant="standard"
-               onChange={(e)=>setFunctionality(e.target.value||'')}/>
-      <br/>
-    <TextField id="standard-basic" 
-                label="Styling" 
-                variant="standard"
-                onChange={(e)=>setStyling(e.target.value||'')} />
-    <br/>
-    <Button variant='outlined'
-        classes={{root: classes.buttonSubmit}}
-            onClick={()=>{
-              console.log(`functionality: ${functionality}\n styling: ${stylying}`)
-              getChatGptCompletion(frameworkSelected, functionality, stylying)
-            }
-            
-            }>
-      Submit!
-    </Button>
-    <Paper elevation={3}>
-      <code>
+    .catch( e => {
+      setLoading(false)
+      setError(e)
+    } )
+  }
 
-            {currentSnippet?.split("\n").map(function(item, idx) {
-              return (
-                <span key={idx}>
-                {item}
-                <br/>
-            </span>
-         )
-        })}
-        </code>
-    </Paper>
+  return (
+    <div className='chatgpt-playground'>
+      {!codeSnippet && !loading && <Form selectedFramework={selectedFramework}
+                                          setFrameworkCallback={setFramework}
+                                          onSubmit={onSubmit}
+                                          setFunctionality={setFunctionality}
+                                          setStyling={setFramework}
+            />}
 
-    {Object.entries(codeSnippets).map(snippet => {
-        return <Paper elevation={3} >
-                  {snippet}
-                  </Paper>
-    })}
-  </>;
+      {codeSnippet && <>
+        <CodeBox codeSnippet={codeSnippet}/>
+         <Button onClick={()=>setCurrentSnippet(null)}>Reset</Button>
+          </>
+          }
+
+      {loading && <div className="loading"/>}
+      {error && (<div className="error">An error occurred while contacting the server. Please try again.</div>)}
+    </div>)
 };
+
+
+const CodeBox = ({codeSnippet}: CodeBoxProps) => {
+  return (
+      <Paper elevation={3}>
+          {codeSnippet?.split("\n").map(function(item, idx) {
+            return (<span key={idx}> {item} <br/> </span>)})}
+      </Paper>
+  )
+}
+
