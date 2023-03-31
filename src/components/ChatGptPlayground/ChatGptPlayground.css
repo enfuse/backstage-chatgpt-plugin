@@ -1,0 +1,19 @@
+.chatgpt-playground{
+    display: flex;
+    flex-direction: column;
+    min-width: 800px;
+}
+
+.button-pannel {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    width: 30%;
+    min-width: 300px;
+    align-items: start;
+}
+
+.button-pannel button {
+    margin-right: 10px;
+}
