@@ -1,8 +1,7 @@
 import { Dispatch, SetStateAction } from "react"
 
 export interface ButtonPannelProps {
-    selected: string
-    setFrameworkCallback: (framework: string) => void
+    children : React.ReactNode
 }
 export interface CodeBoxProps {
     codeSnippet : string
@@ -11,6 +10,12 @@ export interface FormProps {
     selectedFramework:string,
     setFrameworkCallback: ButtonPannelProps["setFrameworkCallback"]
     onSubmit:()=>void,
+    functionality:string,
     setFunctionality: Dispatch<SetStateAction<string>>,
-    setStyling : Dispatch<SetStateAction<string>>
   }
+
+export interface CustomButtomProps {
+    selected: string
+    framework:string,
+    setFrameworkCallback: (framework: string) => void
+}
