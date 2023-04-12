@@ -1,13 +1,12 @@
 import axios from "axios";
 
-export const getChatGptCompletion = (baseUrl: string, framework: string, description:string ,
-                                      temperature: number, maxLength: number) => {
+export const getChatGptCompletion = (baseUrl: string, description:string ,
+                                      temperature: number, maxTokens: number) => {
     return axios.get(`${baseUrl}/api/chatgpt/completion`,{
     params:{
-      framework: framework,
       description: description,
       temperature: temperature,
-      maxLength: maxLength
+      maxTokens: maxTokens
     }})
     
 }

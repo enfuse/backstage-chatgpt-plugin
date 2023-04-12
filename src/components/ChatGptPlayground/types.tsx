@@ -7,12 +7,12 @@ export interface CodeBoxProps {
     codeSnippet : string
   }
 export interface FormProps {
-    selectedFramework:string,
-    setFrameworkCallback: ButtonPannelProps["setFrameworkCallback"]
-    onSubmit:()=>void,
-    functionality:string,
-    setFunctionality: Dispatch<SetStateAction<string>>,
-  }
+  description:string,
+  editorText:string,
+  onSubmit:()=>void,
+  setDescription: Dispatch<SetStateAction<string>>,
+  setEditorText: Dispatch<SetStateAction<string>>,
+}
 
 export interface CustomButtomProps {
     selected: string

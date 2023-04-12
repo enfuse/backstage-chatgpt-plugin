@@ -16,18 +16,17 @@ export const ChatGptPlayground = () => {
   const baseUrl = config.getString('backend.baseUrl')
 
   const [description, setDescription] = React.useState(PLACEHOLDER)
-  const [codeSnippet , setCodeSnippet] = React.useState<string|null>(null)
-  const [selectedFramework, setFramework] = React.useState('react')
+  const [editorText, setEditorText] =  React.useState<string>('')
   const [error , setError] = React.useState<any>(null)
   const [loading , setLoading] = React.useState<boolean>(false)
   const [temperature, setTemperature] = React.useState<number>(DEFAULT_TEMPERATURE);
   const [maxTokens, setMaxTokens] = React.useState<number>(DEFAULT_MAX_TOKENS);
-
+  console.log(editorText)
   const onSubmit = () => {
     setLoading(true)
-    getChatGptCompletion(baseUrl, selectedFramework, description, temperature, maxTokens)
+    getChatGptCompletion(baseUrl, description, temperature, maxTokens)
     .then(response => {
-      setCodeSnippet(response.data?.completion)
+      setEditorText(`${description}\n${response.data?.completion[0].message.content}`)
       setLoading(false)
     })
     .catch( e => {
@@ -38,20 +37,20 @@ export const ChatGptPlayground = () => {
 
   return (
       <>
-      {!codeSnippet  && 
+       
         <div className='chatgpt-playground'>
           <GetStartedGuide/>
-          <Form selectedFramework={selectedFramework}
-                setFrameworkCallback={setFramework}
-                onSubmit={onSubmit}
-                functionality={description}
-                setFunctionality={setDescription}
+          <Form onSubmit={onSubmit}
+                description={description}
+                editorText={editorText}
+                setDescription={setDescription}
+                setEditorText={setEditorText}
                 />
             <SettingsPanel temperature={temperature}
-                           maxLength={length}
+                           maxTokens={maxTokens}
                            setTemperature={setTemperature} 
-                           setLength={setMaxTokens} />
-         </div>}
+                           setMaxTokens={setMaxTokens} />
+         </div>
       {loading && <div className="loading"/>}
       {error && (<div className="error">An error occurred. Please try again.</div>)}
       </>
@@ -85,6 +84,7 @@ const SettingsPanel = ({temperature, maxTokens, setTemperature, setMaxTokens}: S
   }, [temperature,maxTokens])
   return (
       <div className='settings'>
+        <h3>Settings</h3>
         <p><b>Temperature: {standardTemperature}</b></p>
         <Slider aria-label="Volume" value={temperature} onChange={(e,n)=>handleChange(setTemperature,n) }/>
         <p><b>Maximum Length: {standardMaxLength}</b></p>

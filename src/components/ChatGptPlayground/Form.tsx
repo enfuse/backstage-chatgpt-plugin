@@ -2,15 +2,32 @@
 import React from 'react'
 import {Button, TextField } from '@material-ui/core';
 import { FormProps } from './types';
+import { makeStyles } from '@material-ui/core/styles';
+const useStyles = makeStyles({
+  root: {
+    background: '#f1f1f1',
+  },
+});
+export const Form = ({onSubmit,setEditorText,setDescription, editorText}: FormProps) => {
+  const PLACEHOLDER = 'A java spring controler to serve as a payments endpoint for a pet store'
+  const classes = useStyles();
 
-export const Form = ({onSubmit,functionality, setFunctionality}: FormProps) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement|HTMLTextAreaElement>) => {
+    setEditorText(event.target.value);
+    setDescription(event.target.value);
+  };
   return <div className='editor'>
-        <TextField id="standard-basic"
+        <TextField 
+                  className={classes.root}
                   label="Playground"
-                  placeholder={functionality}
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                  placeholder={PLACEHOLDER}
                   multiline
                   minRows={25}
-                  onChange={(e)=>setFunctionality(e.target.value||'')}/>
+                  value={editorText}
+                  onChange={(e)=>handleChange(e)}/>
         <Button variant='outlined'
                 color="primary"
                 onClick={()=>onSubmit()}>

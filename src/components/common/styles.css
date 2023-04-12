@@ -3,11 +3,12 @@
 }
 
 .get-started {
-    background-color: #e2e1eb;
+    background-color: #f1f1f1;
     width: 22%;
     min-width: 250px;
     padding: 5px 50px 5px 20px;
     height: 80%;
+    margin-top: 10px;
 }
 .editor {
     display: flex;
@@ -18,13 +19,14 @@
     height: 100%;
 }
 .settings {
-    background-color: #e2e1eb;
+    background-color: #f1f1f1;
     width: 30%;
     min-width: 200px;
     max-width: 250px;
     padding: 20px;
     height: 100%;
-
+    margin-top: 10px;
+    padding: 5px 50px 5px 20px;
 }
 .chatgpt-playground{
     display: flex;
