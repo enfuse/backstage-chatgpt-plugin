@@ -3,11 +3,11 @@
 }
 
 .get-started {
-    background-color: #d4d3dd;
+    background-color: #e2e1eb;
     width: 22%;
     min-width: 250px;
-    padding: 20px 50px 20px 20px;
-    height: 100%;
+    padding: 5px 50px 5px 20px;
+    height: 80%;
 }
 .editor {
     display: flex;
@@ -18,7 +18,7 @@
     height: 100%;
 }
 .settings {
-    background-color: #d4d3dd;
+    background-color: #e2e1eb;
     width: 30%;
     min-width: 200px;
     max-width: 250px;
