@@ -10,7 +10,7 @@ import { ChatGptPlayground } from '../ChatGptPlayground';
 
 export const ChatGPTPage = () => (
   <Page themeId='tool'>
-    <Header title="ChatGPT Playground" subtitle="Select a frontend framework and describe the component you'd like to build ">
+    <Header title="ChatGPT Playground" subtitle="Build anything from just a quick description">
       <HeaderLabel label="Owner" value="Enfuse" />
       <HeaderLabel label="Lifecycle" value="Alpha" />
     </Header>

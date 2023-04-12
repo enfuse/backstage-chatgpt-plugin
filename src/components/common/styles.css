@@ -2,10 +2,36 @@
     --text-primary: #252152;
 }
 
-.chatgpt-playground{
+.get-started {
+    background-color: #d4d3dd;
+    width: 22%;
+    min-width: 250px;
+    padding: 20px 50px 20px 20px;
+    height: 100%;
+}
+.editor {
     display: flex;
     flex-direction: column;
+    width: 50%;
+    min-width: 500px;
+    margin: 10px 40px 10px 40px;
+    height: 100%;
+}
+.settings {
+    background-color: #d4d3dd;
+    width: 30%;
+    min-width: 200px;
+    max-width: 250px;
+    padding: 20px;
+    height: 100%;
+
+}
+.chatgpt-playground{
+    display: flex;
+    flex-direction: row;
     min-width: 800px;
+    width: 100%;
+    /* justify-content: space-between; */
 }
 
 .button-pannel {
