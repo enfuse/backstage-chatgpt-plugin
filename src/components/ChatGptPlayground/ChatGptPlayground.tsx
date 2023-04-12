@@ -15,17 +15,17 @@ export const ChatGptPlayground = () => {
   const config = useApi(configApiRef)
   const baseUrl = config.getString('backend.baseUrl')
 
-  const [functionality, setFunctionality] = React.useState(PLACEHOLDER)
+  const [description, setDescription] = React.useState(PLACEHOLDER)
   const [codeSnippet , setCodeSnippet] = React.useState<string|null>(null)
   const [selectedFramework, setFramework] = React.useState('react')
   const [error , setError] = React.useState<any>(null)
   const [loading , setLoading] = React.useState<boolean>(false)
   const [temperature, setTemperature] = React.useState<number>(DEFAULT_TEMPERATURE);
-  const [length, setLength] = React.useState<number>(DEFAULT_MAX_TOKENS);
+  const [maxTokens, setMaxTokens] = React.useState<number>(DEFAULT_MAX_TOKENS);
 
   const onSubmit = () => {
     setLoading(true)
-    getChatGptCompletion(baseUrl, selectedFramework, functionality, temperature, length)
+    getChatGptCompletion(baseUrl, selectedFramework, description, temperature, maxTokens)
     .then(response => {
       setCodeSnippet(response.data?.completion)
       setLoading(false)
@@ -44,13 +44,13 @@ export const ChatGptPlayground = () => {
           <Form selectedFramework={selectedFramework}
                 setFrameworkCallback={setFramework}
                 onSubmit={onSubmit}
-                functionality={functionality}
-                setFunctionality={setFunctionality}
+                functionality={description}
+                setFunctionality={setDescription}
                 />
             <SettingsPanel temperature={temperature}
                            maxLength={length}
                            setTemperature={setTemperature} 
-                           setLength={setLength} />
+                           setLength={setMaxTokens} />
          </div>}
       {loading && <div className="loading"/>}
       {error && (<div className="error">An error occurred. Please try again.</div>)}
@@ -60,12 +60,12 @@ export const ChatGptPlayground = () => {
 
 interface SettingsPannelPrpps {
   temperature : number ,
-  maxLength : number,
+  maxTokens : number,
   setTemperature: React.Dispatch<React.SetStateAction<number>>
-  setLength: React.Dispatch<React.SetStateAction<number>>
+  setMaxTokens: React.Dispatch<React.SetStateAction<number>>
 }
 
-const SettingsPanel = ({temperature, maxLength, setTemperature, setLength}: SettingsPannelPrpps) => {
+const SettingsPanel = ({temperature, maxTokens, setTemperature, setMaxTokens}: SettingsPannelPrpps) => {
   const [standardTemperature, setStandardTemperature] = React.useState<number>(0.8)
   const [standardMaxLength, setStandardMaxLength] = React.useState<number>(0.8)
   const handleChange = (callback: React.Dispatch<React.SetStateAction<number>>, value: number | number[]) => {
@@ -81,14 +81,14 @@ const SettingsPanel = ({temperature, maxLength, setTemperature, setLength}: Sett
 
   React.useEffect(() => {
     convertTemperature(temperature)
-    convertLength(maxLength)
-  }, [temperature,maxLength])
+    convertLength(maxTokens)
+  }, [temperature,maxTokens])
   return (
       <div className='settings'>
         <p><b>Temperature: {standardTemperature}</b></p>
         <Slider aria-label="Volume" value={temperature} onChange={(e,n)=>handleChange(setTemperature,n) }/>
         <p><b>Maximum Length: {standardMaxLength}</b></p>
-        <Slider aria-label="Volume" value={maxLength} onChange={(e,n)=>handleChange(setLength,n) }/>
+        <Slider aria-label="Volume" value={maxTokens} onChange={(e,n)=>handleChange(setMaxTokens,n) }/>
     </div>
   )
 }
