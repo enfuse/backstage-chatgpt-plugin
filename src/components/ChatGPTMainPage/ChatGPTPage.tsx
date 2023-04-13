@@ -16,9 +16,9 @@ export const ChatGPTPage = () => (
     </Header>
     <Content>
       <Grid container spacing={3} direction="column">
-        <Grid item>
+        {/* <Grid item> */}
           <ChatGptPlayground />
-        </Grid>
+        {/* </Grid> */}
       </Grid>
     </Content>
   </Page>

@@ -1,46 +1,63 @@
 :root {
-    --text-primary: #252152;
+    --text-primary: #2E77D0;
 }
 
 .get-started {
     background-color: #f1f1f1;
-    width: 22%;
+    width: 20%;
     min-width: 250px;
-    padding: 5px 50px 5px 20px;
-    height: 80%;
-    margin-top: 10px;
+    padding: 5px 20px 5px 20px;
+    height: 100%;
 }
 .editor {
     display: flex;
     flex-direction: column;
-    width: 50%;
+    width: 60%;
     min-width: 500px;
-    margin: 10px 40px 10px 40px;
+    margin: 0px 30px 10px 30px;
     height: 100%;
+}
+.editor button {
+    width: 100px;
+    margin: 5px 5px 0px 0px;
+}
+
+.editor textarea {
+    resize: none;
+    width: 100%;
+    font-family: inherit;
+    font-size: inherit;
+    padding: 20px 15px;
+
+  }
+.editor textarea:focus {
+    outline: none;
+    border-color: black;
+    border-width: 0.1rem;
 }
 .settings {
     background-color: #f1f1f1;
     width: 30%;
     min-width: 200px;
-    max-width: 250px;
+    max-width: 300px;
     padding: 20px;
     height: 100%;
-    margin-top: 10px;
-    padding: 5px 50px 5px 20px;
+    padding: 5px 20px 5px 20px;
 }
 .chatgpt-playground{
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
     min-width: 800px;
     width: 100%;
-    /* justify-content: space-between; */
+    height: 100%;
 }
 
 .button-pannel {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-evenly;
+    justify-content: flex-start;
     width: 100%;
     min-width: 300px;
     align-items: start;
@@ -55,16 +72,16 @@
 }
 
 .loading {
-    align-self: center;
+    /* align-self: center; */
 }
 .loading:after {
     content: " ";
     display: inline-block;
-    width: 64px;
-    height: 64px;
-    margin: 8px;
+    width: 24px;
+    height: 24px;
+    /* margin: 8px; */
     border-radius: 50%;
-    border: 6px solid var(--text-primary);
+    border: 2px solid var(--text-primary);
     border-color: var(--text-primary) transparent var(--text-primary) transparent;
     animation: lds-dual-ring 1.2s linear infinite;
 }
