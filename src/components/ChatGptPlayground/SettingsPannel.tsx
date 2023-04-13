@@ -1,4 +1,4 @@
-import { Slider } from '@material-ui/core'
+import { FormControl, FormHelperText, InputLabel, MenuItem, Select, Slider } from '@material-ui/core'
 import React from 'react'
 import { SettingsPannelPrpps } from './types'
 import "../common/styles.css"
@@ -23,7 +23,8 @@ export const SettingsPanel = ({temperature, maxTokens, setTemperature, setMaxTok
     }, [temperature,maxTokens])
     return (
         <div className='settings'>
-          <h3>Settings</h3>
+          <h2>Settings</h2>
+          <ModuleSetting/>
           <p><b>Temperature: {standardTemperature}</b></p>
           <Slider aria-label="Volume" value={temperature} onChange={(e,n)=>handleChange(setTemperature,n) }/>
           <p><b>Maximum Length: {standardMaxLength}</b></p>
@@ -31,3 +32,21 @@ export const SettingsPanel = ({temperature, maxTokens, setTemperature, setMaxTok
       </div>
     )
   }
+
+const ModuleSetting = () => {
+  return (
+    <FormControl disabled>
+    <InputLabel className='settings-module-label' id="setting-module-label">Model</InputLabel>
+    <Select
+          labelId="settings-module-label"
+          id="settings-module"
+          value={'default'}
+          label="Age"
+        >
+          <MenuItem value="default">
+            <em>gpt-3.5-turbo</em>
+          </MenuItem>
+        </Select>
+  </FormControl>
+  )
+}
