@@ -8,7 +8,7 @@ import { Form } from './Form';
 
 export const ChatGptPlayground = () => {
   
-  const PLACEHOLDER = 'A java spring controler to serve as a payments endpoint for a pet store'
+  const PLACEHOLDER = 'A Java Spring controller to serve as a payments endpoint for a pet store'
   const DEFAULT_TEMPERATURE = 80 // --> 0.8 after converted
   const DEFAULT_MAX_TOKENS = 6.4 // --> 256 after converted
 
