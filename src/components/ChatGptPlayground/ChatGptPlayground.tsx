@@ -6,8 +6,6 @@ import { Form } from './Form';
 import { SettingsPanel } from './SettingsPannel';
 
 export const ChatGptPlayground = () => {
-  // const PLACEHOLDER = 'Explain openAI to a 10 year old'
-
   const DEFAULT_TEMPERATURE = 80 // --> 0.8 after converted
   const DEFAULT_MAX_TOKENS = 6.4 // --> 256 after converted
 
@@ -69,8 +67,8 @@ const GetStartedGuide = () => {
   return (
     <div className='get-started'>
         <h3>Get Started</h3>
-        <p>Enter an instruction and explore different setups to discover different responses you can generate </p>
-        <p>Tweak around with the settings pannel.<b> Temperature </b> measures randoomness of your response while <b>max tokens</b>  limits the length of the prompt and response combined </p>
+        <p>ChatGPT is an incredibly advanced Large Language Model (LLM) auto-complete engine. You can use this playground to explore it’s functionality. You can try asking it to create components, services, sql queries and more. It can help write user-stories, design architectures, create documentation and tests. </p>
+        <p>Try playing with the settings and see how temperature (randomness) and max tokens (max length of input + output) affect the output. </p>
         <p><b>Keep in mind</b> </p>
         <p>More descriptive prompts will generate better results, i.e. specify the language the you want the model to respond with. </p>
         <p>Larger prompts can take significantly more time. </p>

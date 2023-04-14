@@ -5,7 +5,7 @@ import { FormProps } from './types';
 import { ButtonPanel } from '../common/ButtonPanel';
 
 export const Form = ({onSubmit,setEditorText,setDescription,resetForm, editorText, loading, isSuccess}: FormProps) => {
-  const PLACEHOLDER = 'Explain how to make poached eggs'
+  const PLACEHOLDER = `A Java controller that will serve as a payments endpoint for a pet store`
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement|HTMLTextAreaElement>) => {
     setEditorText(event.target.value);
