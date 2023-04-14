@@ -13,10 +13,28 @@ The more descriptive the prompt, the better the response! Note that the response
 
 ![Setting Demonstration](https://github.com/enfuse/enfuse-backstage/blob/8ad2efbe5bccdda8c6a31ed4f4049702f32b4fa3/docs/settings.png)
 
-## Getting started
+# Requirements
+1. A [Backstage](https://backstage.io/docs/getting-started/) application instance
+2. Yarn
 
-Your plugin has been added to the example app in this repository, meaning you'll be able to access it by running `yarn start` in the root directory, and then navigating to [/chatgpt-frontend](http://localhost:3000/chatgpt-frontend).
+# Installation
+Run 
+```sh
+    yarn add backstage-chatgpt-plugin
+```
+Then run 
+```sh
+    yarn install
+```
 
-You can also serve the plugin in isolation by running `yarn start` in the plugin directory.
-This method of serving the plugin provides quicker iteration speed and a faster startup and hot reloads.
-It is only meant for local development, and the setup for it can be found inside the [/dev](./dev) directory.
+# Configuration
+
+1. This plugin requires credential details. This should be provided in the backstage configuration as shown below:
+
+    ```yml
+    //app-config.yml or app-config-local.yml
+    azureBuildpacks:
+    credentials:
+        tenantId: <tenant-id>
+        clientId: <client-id>
+    ```
