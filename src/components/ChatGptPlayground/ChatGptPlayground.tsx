@@ -69,8 +69,8 @@ const GetStartedGuide = () => {
   return (
     <div className='get-started'>
         <h3>Get Started</h3>
-        <p>Enter an instruction and explore different setups to explore what responses you can generate  </p>
-        <p>Tweak around with the settings pannel to create different kinds of responses </p>
+        <p>Enter an instruction and explore different setups to discover different responses you can generate </p>
+        <p>Tweak around with the settings pannel.<b> Temperature </b> measures randoomness of your response while <b>max tokens</b>  limits the length of the prompt and response combined </p>
         <p><b>Keep in mind</b> </p>
         <p>More descriptive prompts will generate better results, i.e. specify the language the you want the model to respond with. </p>
         <p>Larger prompts can take significantly more time. </p>

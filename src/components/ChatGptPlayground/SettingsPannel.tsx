@@ -27,7 +27,7 @@ export const SettingsPanel = ({temperature, maxTokens, setTemperature, setMaxTok
           <ModuleSetting/>
           <p><b>Temperature: {standardTemperature}</b></p>
           <Slider aria-label="Volume" value={temperature} onChange={(e,n)=>handleChange(setTemperature,n) }/>
-          <p><b>Maximum Length: {standardMaxLength}</b></p>
+          <p><b>Max Tokens: {standardMaxLength}</b></p>
           <Slider aria-label="Volume" value={maxTokens} onChange={(e,n)=>handleChange(setMaxTokens,n) }/>
       </div>
     )
