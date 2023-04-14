@@ -1,4 +1,4 @@
-import { FormControl, FormHelperText, InputLabel, MenuItem, Select, Slider } from '@material-ui/core'
+import { FormControl, InputLabel, MenuItem, Select, Slider } from '@material-ui/core'
 import React from 'react'
 import { SettingsPannelPrpps } from './types'
 import "../common/styles.css"

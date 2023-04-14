@@ -79,10 +79,6 @@
 .error-message {
     background-color: aquamarine;
 }
-
-.loading {
-    /* align-self: center; */
-}
 .loading:after {
     content: " ";
     display: inline-block;

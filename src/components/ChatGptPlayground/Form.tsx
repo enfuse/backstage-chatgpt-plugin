@@ -5,8 +5,7 @@ import { FormProps } from './types';
 import { ButtonPanel } from '../common/ButtonPanel';
 
 export const Form = ({onSubmit,setEditorText,setDescription,resetForm, editorText, loading, isSuccess}: FormProps) => {
-  const PLACEHOLDER = 'A java spring controler to serve as a payments endpoint for a pet store'
-  // const classes = useStyles();
+  const PLACEHOLDER = 'Explain how to make poached eggs'
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement|HTMLTextAreaElement>) => {
     setEditorText(event.target.value);

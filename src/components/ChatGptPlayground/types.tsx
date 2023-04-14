@@ -7,7 +7,6 @@ export interface CodeBoxProps {
     codeSnippet : string
   }
 export interface FormProps {
-  description:string,
   editorText:string,
   loading:boolean,
   isSuccess:boolean,
