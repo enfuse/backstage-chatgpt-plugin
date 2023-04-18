@@ -1,50 +1,43 @@
 
-import React from 'react'
+import React, {useContext} from 'react'
 import {Button } from '@material-ui/core';
 import { FormProps } from './types';
 import { ButtonPanel } from '../common/ButtonPanel';
-import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
+import PlaygroundContext, { UPDATE_USER_MESSAGE } from './PlaygroundContext';
 
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      width: '100%',
-      maxWidth: 360,
-      backgroundColor: theme.palette.background.paper,
-    },
-  }),
-);
-
-export const Editor = ({onSubmit,setEditorText,setDescription,resetForm, editorText, loading, isSuccess}: FormProps) => {
+export const Editor = ({onSubmit,resetForm, loading, isSuccess}: FormProps) => {
+  const { state, dispatch } = useContext(PlaygroundContext);
   const PLACEHOLDER = 'A Java spring controller to serve as a payments endpoint for a pet store'
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement|HTMLTextAreaElement>) => {
-    setEditorText(event.target.value);
-    setDescription(event.target.value);
+    dispatch({type: UPDATE_USER_MESSAGE, payload: {userMessage: event.target.value}})
   };
-
   return <div className='editor'>
-        {/* <textarea
-          placeholder={PLACEHOLDER}
-          rows={25}
-          value={editorText}
-          onChange={(e)=>handleChange(e)}/> */}
-          <ButtonPanel>
-            <Button variant='outlined'
-                    color="primary"
-                    disabled={isSuccess || loading}
-                    onClick={()=>onSubmit()}>
-                    {!loading && 'Submit!' }
-                    {!!loading && <div className="loading"/>}
-            </Button>
-            {!loading && !!isSuccess && 
-                <Button variant='outlined'
+        <div className='chat-box'>
+          {state.messages?.length > 0 && state.messages.map(message => {
+            return <Message key={message.content} role={message.role} content={message.content} />
+          })}
+        </div>
+        {!loading && !isSuccess && 
+            <input 
+            onChange={(e)=>handleChange(e)}
+            placeholder={PLACEHOLDER}></input>
+        }
+        <ButtonPanel>
+          <Button variant='outlined'
                   color="primary"
-                  onClick={()=>resetForm()}>
-                  Reset
-                </Button>}
-          </ButtonPanel>
+                  disabled={isSuccess || loading}
+                  onClick={()=>onSubmit()}>
+                  {!loading && 'Submit!' }
+                  {!!loading && <div className="loading"/>}
+          </Button>
+          {!loading && !!isSuccess && 
+              <Button variant='outlined'
+                color="primary"
+                onClick={()=>resetForm()}>
+                Reset
+          </Button>}
+        </ButtonPanel>
     </div>
   }
 
@@ -53,9 +46,17 @@ interface MessageProps {
   content :  string ,
 }
 const Message = ({role, content}: MessageProps) => {
+
   return (
-    <textarea
-      rows={25}
-      value={`${role} : ${content}`}/>
-  )
+    <div className="chat-message">
+      <div
+        contentEditable={false}
+        role="textbox"
+        tabIndex={0}
+        aria-multiline={true}
+      >
+        <p><b>{role}</b> : {content}</p>
+      </div>
+    </div>
+  );
 }

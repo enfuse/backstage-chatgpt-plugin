@@ -1,34 +1,18 @@
 import { FormControl, InputLabel, MenuItem, Select, Slider } from '@material-ui/core'
-import React from 'react'
-import { SettingsPannelPrpps } from './types'
+import React, { useContext } from 'react'
 import "../common/styles.css"
+import PlaygroundContext, { UPDATE_MAX_TOKENS, UPDATE_TEMPERATURE } from './PlaygroundContext'
 
-export const SettingsPanel = ({temperature, maxTokens, setTemperature, setMaxTokens}: SettingsPannelPrpps) => {
-    const [standardTemperature, setStandardTemperature] = React.useState<number>(0.8)
-    const [standardMaxLength, setStandardMaxLength] = React.useState<number>(0.8)
-    const handleChange = (callback: React.Dispatch<React.SetStateAction<number>>, value: number | number[]) => {
-      callback(value as number);
-    };
-  
-    const convertTemperature = (regularTemperature:number) => {
-      regularTemperature > 0 ? setStandardTemperature( regularTemperature / 100 ) : setStandardTemperature(0) 
-    }
-    const convertLength = (regularLength:number) => {
-      regularLength > 0 ? setStandardMaxLength(regularLength * 40) : setStandardMaxLength(0)
-    }
-  
-    React.useEffect(() => {
-      convertTemperature(temperature)
-      convertLength(maxTokens)
-    }, [temperature,maxTokens])
+export const SettingsPanel = () => {
+  const { state, dispatch } = useContext(PlaygroundContext);
     return (
         <div className='settings'>
           <h2>Settings</h2>
           <ModuleSetting/>
-          <p><b>Temperature: {standardTemperature}</b></p>
-          <Slider aria-label="Volume" value={temperature} onChange={(e,n)=>handleChange(setTemperature,n) }/>
-          <p><b>Max Tokens: {standardMaxLength}</b></p>
-          <Slider aria-label="Volume" value={maxTokens} onChange={(e,n)=>handleChange(setMaxTokens,n) }/>
+          <p><b>Temperature: {state.temperature}</b></p>
+          <Slider aria-label="Volume" value={state.temperature * 100} onChange={(_, value) => dispatch({type: UPDATE_TEMPERATURE, payload: {temperature: (value as number) / 100}})}/>
+          <p><b>Max Tokens: {state.maxTokens}</b></p>
+          <Slider aria-label="Max Tokens" value={state.maxTokens / 40} onChange={(_,value)=>dispatch({type: UPDATE_MAX_TOKENS, payload: {maxTokens: value as number}})}/>
       </div>
     )
   }

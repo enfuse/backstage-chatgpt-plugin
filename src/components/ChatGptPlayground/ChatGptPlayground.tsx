@@ -2,66 +2,61 @@ import React from 'react';
 import { useApi, configApiRef } from '@backstage/core-plugin-api';
 import "../common/styles.css"
 import {getChatGptCompletion} from '../../client/chatgpt'
-import { Form } from './Form';
+import { Editor } from './Editor';
 import { SettingsPanel } from './SettingsPannel';
+import PlaygroundContext, {Message, RESET_MESSAGE_CHAT, UPDATE_MESSAGE_CHAT} from './PlaygroundContext';
+
 
 export const ChatGptPlayground = () => {
-  const DEFAULT_TEMPERATURE = 80 // --> 0.8 after converted
-  const DEFAULT_MAX_TOKENS = 6.4 // --> 256 after converted
-
   const config = useApi(configApiRef)
   const baseUrl = config.getString('backend.baseUrl')
+  const {state, dispatch} = React.useContext(PlaygroundContext);
 
-  const [description, setDescription] = React.useState('')
-  const [editorText, setEditorText] =  React.useState<string>('')
   const [error , setError] = React.useState<any>(null)
   const [loading , setLoading] = React.useState<boolean>(false)
   const [isSuccess , setIsSuccess] = React.useState<boolean>(false)
-  const [temperature, setTemperature] = React.useState<number>(DEFAULT_TEMPERATURE);
-  const [maxTokens, setMaxTokens] = React.useState<number>(DEFAULT_MAX_TOKENS);
+
   const onSubmit = () => {
     setLoading(true)
-    getChatGptCompletion(baseUrl, description, temperature, maxTokens)
-    .then(response => {
-      setEditorText(`${description}\n\n${response.data?.completion[0].message.content}`)
-      setLoading(false)
-      setIsSuccess(true)
-    })
-    .catch( e => {
-      setLoading(false)
-      setIsSuccess(false)
-      setError(e)
-    } )
+
+    const userMessge : Message = {role: 'User', content : state.userMessage}
+    dispatch({ type: UPDATE_MESSAGE_CHAT, payload: {message: userMessge } });
+    getChatGptCompletion(baseUrl, state.userMessage, state.temperature, state.maxTokens)
+        .then(response => {
+            const systemContent = response.data?.completion[0].message.content;
+            // console.log(systemContent)
+            // console.log(response.data?.completion[0].message)
+            const assistantMessage: Message =  {role: 'Assistant', content : systemContent}
+            dispatch({ type: UPDATE_MESSAGE_CHAT, payload: {message: assistantMessage} });
+            setLoading(false)
+            setIsSuccess(true)
+        })
+        .catch( e => {
+            setLoading(false)
+            setIsSuccess(false)
+            setError(e)
+        })
   }
+
   const resetPage = () => {
     setLoading(false)
     setIsSuccess(false)
-    setEditorText('')
+    dispatch({type: RESET_MESSAGE_CHAT})
   }
 
   return (
-      <>
-        <div className='chatgpt-playground'>
+      <div className='chatgpt-playground'>
           <GetStartedGuide/>
-          <Form onSubmit={onSubmit}
-                editorText={editorText}
-                setDescription={setDescription}
-                setEditorText={setEditorText}
+          <Editor onSubmit={onSubmit}
                 loading={loading}
                 isSuccess={isSuccess}
                 resetForm={()=>resetPage()}
                 />
-            <SettingsPanel temperature={temperature}
-                           maxTokens={maxTokens}
-                           setTemperature={setTemperature} 
-                           setMaxTokens={setMaxTokens} />
-         </div>
-
-        {error && (<div className="error">An error occurred. Please try again.</div>)}
-      </>
+          <SettingsPanel/>
+          {error && (<div className="error">An error occurred. Please try again.</div>)}
+      </div>
     )
 };
-
 
 const GetStartedGuide = () => {
   return (
