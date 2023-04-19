@@ -1,10 +1,9 @@
 {
-  "name": "@internal/plugin-chatgpt-frontend",
-  "version": "0.1.0",
+  "name": "@enfuse/chatgpt-plugin-frontend",
+  "version": "1.0.0",
   "main": "src/index.ts",
   "types": "src/index.ts",
   "license": "Apache-2.0",
-  "private": true,
   "publishConfig": {
     "access": "public",
     "main": "dist/index.esm.js",
@@ -20,7 +19,8 @@
     "test": "backstage-cli package test",
     "clean": "backstage-cli package clean",
     "prepack": "backstage-cli package prepack",
-    "postpack": "backstage-cli package postpack"
+    "postpack": "backstage-cli package postpack",
+    "prepublish": "yarn tsc -p tsconfig.json && yarn run build" 
   },
   "dependencies": {
     "@backstage/core-components": "^0.11.1",

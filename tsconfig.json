@@ -1,0 +1,13 @@
+{
+    "include": ["src/index.ts"],
+    "exclude":["node_modules"],
+    "compileOnSave": true,
+    "module":"commonjs",
+    "compilerOptions": {
+      "allowJs": true,
+      "declaration": true,
+      "outDir": "dist-types/src",
+      "declarationMap": true,
+      "esModuleInterop":true,
+    }
+  }
