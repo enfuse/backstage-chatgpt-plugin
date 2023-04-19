@@ -95,7 +95,7 @@ const PlaygroundContext = createContext<PlaygroundContextValue>({
   dispatch: () => null,
 });
 
-export const PlaygroundProvider: React.FC = ({ children }) => {
+export const PlaygroundProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [state, dispatch] = useReducer(playgroundReducer, initialState);
   return (
     <PlaygroundContext.Provider value={{ state, dispatch }}>
