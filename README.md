@@ -18,14 +18,11 @@ The more descriptive the prompt, the better the response! Note that the response
 2. Yarn
 
 # Installation
-Run 
+Navigate to packages/app and run
 ```sh
-    yarn add backstage-chatgpt-plugin
+    yarn add @enfuse/chatgpt-frontend-plugin
 ```
-Then run 
-```sh
-    yarn install
-```
+
 
 # Configuration
 
