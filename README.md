@@ -21,16 +21,11 @@ Navigate to packages/app and run
     yarn add @enfuse/chatgpt-frontend-plugin
 ```
 
-# Configuration
-
-```json
-    "@enfuse/chatgpt-plugin-frontend": "^1.0.0"
-```
 
 2. Navigate to your packages/app/src/App.tsx and include the following 
 
 ``` javascript 
-import {  ChatgptFrontendPage} from '@internal/plugin-chatgpt-frontend';
+import {  ChatgptFrontendPage} from '@enfuse/plugin-chatgpt-frontend';
 ....
 <FlatRoutes>
         ....
