@@ -18,14 +18,14 @@ The more descriptive the prompt, the better the response! Note that the response
 # Installation
 Navigate to packages/app and run
 ```sh
-    yarn add @enfuse/chatgpt-frontend-plugin
+    yarn add @enfuse/chatgpt-plugin-frontend
 ```
 
 
 2. Navigate to your packages/app/src/App.tsx and include the following 
 
 ``` javascript 
-import {  ChatgptFrontendPage} from '@enfuse/plugin-chatgpt-frontend';
+import {  ChatgptFrontendPage} from '@enfuse/chatgpt-plugin-frontend';
 ....
 <FlatRoutes>
         ....
