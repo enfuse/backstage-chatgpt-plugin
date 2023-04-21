@@ -12,33 +12,33 @@ export const Editor = ({onSubmit,resetForm, loading, isSuccess}: FormProps) => {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement|HTMLTextAreaElement>) => {
     dispatch({type: UPDATE_USER_MESSAGE, payload: {userMessage: event.target.value}})
   };
+
   return <div className='editor'>
-        <div className='chat-box'>
-          {state.messages?.length > 0 && state.messages.map(message => {
-            return <Message key={message.content} role={message.role} content={message.content} />
-          })}
-        </div>
-        {!loading && !isSuccess && 
-            <input 
-            onChange={(e)=>handleChange(e)}
-            placeholder={PLACEHOLDER}></input>
-        }
-        <ButtonPanel>
-          <Button variant='outlined'
-                  color="primary"
-                  disabled={isSuccess || loading}
-                  onClick={()=>onSubmit()}>
-                  {!loading && 'Submit!' }
-                  {!!loading && <div className="loading"/>}
-          </Button>
-          {!loading && !!isSuccess && 
+            <div className='chat-box'>
+              {state.messages?.length > 0 && state.messages.map(message => {
+                return <Message key={message.content} role={message.role} content={message.content} />
+              })}
+            </div>
+            {!loading && !isSuccess && 
+                <textarea  onChange={(e)=>handleChange(e)}
+                placeholder={PLACEHOLDER}></textarea>
+            }
+            <ButtonPanel>
               <Button variant='outlined'
-                color="primary"
-                onClick={()=>resetForm()}>
-                Reset
-          </Button>}
-        </ButtonPanel>
-    </div>
+                      color="primary"
+                      disabled={isSuccess || loading}
+                      onClick={()=>onSubmit()}>
+                      {!loading && 'Submit!' }
+                      {!!loading && <div className="loading"/>}
+              </Button>
+              {!loading && !!isSuccess && 
+                  <Button variant='outlined'
+                    color="primary"
+                    onClick={()=>resetForm()}>
+                    Reset
+              </Button>}
+            </ButtonPanel>
+          </div>
   }
 
 interface MessageProps {
