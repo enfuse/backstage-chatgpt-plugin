@@ -12,7 +12,7 @@ export const SettingsPanel = () => {
           <p><b>Temperature: {state.temperature}</b></p>
           <Slider aria-label="Volume" value={state.temperature * 100} onChange={(_, value) => dispatch({type: UPDATE_TEMPERATURE, payload: {temperature: (value as number) / 100}})}/>
           <p><b>Max Tokens: {state.maxTokens}</b></p>
-          <Slider aria-label="Max Tokens" value={state.maxTokens / 40} onChange={(_,value)=>dispatch({type: UPDATE_MAX_TOKENS, payload: {maxTokens: value as number}})}/>
+          <Slider aria-label="Max Tokens" value={state.maxTokens / 40} onChange={(_,value)=>dispatch({type: UPDATE_MAX_TOKENS, payload: {maxTokens:( value as number)*40}})}/>
       </div>
     )
   }
