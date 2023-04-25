@@ -1,1 +1,1 @@
-export { chatgptFrontendPlugin, ChatgptFrontendPage } from './plugin';
+export { chatgptFrontendPlugin, ChatGPTFrontendPage } from './plugin';

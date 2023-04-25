@@ -25,10 +25,10 @@ Navigate to packages/app and run
 2. Navigate to your packages/app/src/App.tsx and include the following 
 
 ``` javascript 
-import {  ChatgptFrontendPage} from '@enfuse/chatgpt-plugin-frontend';
+import { ChatGPTFrontendPage } from '@enfuse/chatgpt-plugin-frontend';
 ....
 <FlatRoutes>
         ....
-        <Route path="/chatgpt" element={<ChatgptFrontendPage />} />
+        <Route path="/chatgpt" element={<ChatGPTFrontendPage />} />
 </FlatRoutes>
 ```

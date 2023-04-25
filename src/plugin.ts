@@ -9,9 +9,9 @@ export const chatgptFrontendPlugin = createPlugin({
   },
 });
 
-export const ChatgptFrontendPage = chatgptFrontendPlugin.provide(
+export const ChatGPTFrontendPage = chatgptFrontendPlugin.provide(
   createRoutableExtension({
-    name: 'ChatgptFrontendPage',
+    name: 'ChatGPTFrontendPage',
     component: () =>
       import('./components/ChatGPTMainPage').then(m => m.ChatGPTPage),
     mountPoint: rootRouteRef,
