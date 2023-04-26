@@ -22,6 +22,7 @@
     margin: 5px 5px 0px 0px;
 }
 .editor textarea {
+    background-color: #f1f1f192;
     width: 100%;
     min-height: 100px; 
     resize: none; 
@@ -32,6 +33,7 @@
     box-sizing: border-box; 
 }
 .chat-box {
+
     width:100%;
     height: 600px;
     overflow: auto;
