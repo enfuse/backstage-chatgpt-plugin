@@ -1,7 +1,7 @@
 import React from 'react';
 import { ChatGPTPage } from './ChatGPTPage';
 import { ThemeProvider } from '@material-ui/core';
-import { darkTheme, lightTheme } from '@backstage/theme';
+import { darkTheme } from '@backstage/theme';
 import { rest } from 'msw';
 import { setupServer } from 'msw/node';
 import {

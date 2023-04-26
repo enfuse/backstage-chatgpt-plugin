@@ -3,10 +3,7 @@ import { BackstageOverrides as CatalogReactOverrides } from '@backstage/plugin-c
 import {
   BackstageTheme,
   createTheme,
-  pageTheme as defaultPageThemes,
-  PageTheme,
-  darkTheme,
-  lightTheme
+  darkTheme
 } from '@backstage/theme';
 
 import { alpha } from '@material-ui/core/styles';
@@ -17,7 +14,7 @@ const baseTheme = createTheme({
   palette: {
     ...darkTheme.palette,
     primary: {
-      main: '#0052CC',
+      main: '#f1f1f1',
     },
     secondary: {
       main: '#FF5630',
@@ -40,14 +37,14 @@ const baseTheme = createTheme({
       color: '#FFFFFF',
       indicator: '#2684FF',
       navItem: {
-        hoverBackground: 'rgba(116,118,121,0.6)',
+        hoverBackground: '#FFFFFF',
       },
     },
     text: {
       primary: '#172B48',
     },
     background: {
-      default: '#333333',
+      default: '#5b5b5b',
     },
   },
   defaultPageTheme: 'home',

@@ -1,13 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {  CssBaseline, Grid } from '@material-ui/core';
 import { ThemeProvider, useMediaQuery } from '@material-ui/core';
-import {
-  createTheme,
-  genPageTheme,
-  lightTheme,
-  darkTheme,
-  shapes,
-} from '@backstage/theme';
+import { lightTheme } from '@backstage/theme';
 import {
   Header,
   Page,
