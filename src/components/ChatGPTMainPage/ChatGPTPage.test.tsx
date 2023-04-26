@@ -1,7 +1,7 @@
 import React from 'react';
 import { ChatGPTPage } from './ChatGPTPage';
 import { ThemeProvider } from '@material-ui/core';
-import { lightTheme } from '@backstage/theme';
+import { darkTheme, lightTheme } from '@backstage/theme';
 import { rest } from 'msw';
 import { setupServer } from 'msw/node';
 import {
@@ -23,7 +23,7 @@ describe('ChatGPT PAge', () => {
 
   it('should render', async () => {
     const rendered = await renderInTestApp(
-      <ThemeProvider theme={lightTheme}>
+      <ThemeProvider theme={darkTheme}>
         <ChatGPTPage />
       </ThemeProvider>,
     );
