@@ -20,8 +20,9 @@ export const SettingsPanel = () => {
 const ModuleSetting = () => {
   return (
     <FormControl disabled>
-    <InputLabel className='settings-module-label' id="setting-module-label">Model</InputLabel>
+    <InputLabel className='settings-module-label' id="setting-module-label" >Model</InputLabel>
     <Select
+          //style={{color: '#5A5A5A'}}
           labelId="settings-module-label"
           id="settings-module"
           value={'default'}
