@@ -9,19 +9,37 @@
     padding: 5px 20px 5px 20px;
     height: 100%;
 }
-.editor {
+
+.system-prompt {
+    height: 75%;
+    width: 30%; 
+    min-width: 300px;
+    max-width: 400px;
+}
+.system-prompt textarea {
+    resize: none;
+    width: 100%;
+    height: 76VH;
+    background-color: rgb(255, 255, 255);
+    font-size: larger;
+    padding: 15px;
+}
+.system-prompt h2 {
+    padding-left: 10px;
+}
+.chatPannel {
     display: flex;
     flex-direction: column;
     width: 60%;
     min-width: 500px;
     margin: 0px 30px 10px 30px;
-    height: 100%;
+    height: 100vh;
 }
-.editor button {
+.chatPannel button {
     width: 100px;
     margin: 5px 5px 0px 0px;
 }
-.editor textarea {
+.chatPannel textarea {
     width: 100%;
     min-height: 100px; 
     resize: none; 
@@ -33,7 +51,7 @@
 }
 .chat-box {
     width:100%;
-    height: 600px;
+    height: 70%;
     overflow: auto;
 }
 .chat-message {
@@ -80,7 +98,7 @@
     justify-content: space-between;
     min-width: 800px;
     width: 100%;
-    height: 100%;
+    height: 50vh;
 }
 
 .button-pannel {
