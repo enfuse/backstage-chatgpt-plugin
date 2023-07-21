@@ -16,11 +16,11 @@ The more descriptive the prompt, the better the response! Note that the response
 2. The [backend](https://github.com/enfuse/backstage-chatgpt-backend) part of this plugin installed.
 
 # Installation
-1. Navigate to packages/app and run
+Navigate to root of Backstage installation and run
 ```sh
-    yarn add @enfuse/chatgpt-plugin-frontend
+# From root directory of your Backstage installation
+yarn add --cwd packages/app @enfuse/chatgpt-plugin-frontend
 ```
-
 
 2. Navigate to your packages/app/src/App.tsx and include the following 
 
