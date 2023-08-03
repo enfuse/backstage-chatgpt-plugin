@@ -2,9 +2,15 @@
 export interface ButtonPannelProps {
     children : React.ReactNode
 }
+
 export interface CodeBoxProps {
     codeSnippet : string
-  }
+}
+
+export interface ChatGptPlaygroundProps {
+    showErrorMessage : () => void
+}
+
 export interface FormProps {
   loading:boolean,
   isSuccess:boolean,
