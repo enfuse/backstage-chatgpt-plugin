@@ -6,14 +6,14 @@ import { ChatPannel } from './ChatPannel';
 import { SettingsPanel } from './SettingsPannel';
 import SystemPrompt from './SystemPrompt'
 import PlaygroundContext, {Message, RESET_MESSAGE_CHAT, UPDATE_MESSAGE_CHAT} from './PlaygroundContext';
+import { ChatGptPlaygroundProps } from './types';
 
 
-export const ChatGptPlayground = () => {
+export const ChatGptPlayground = ({showErrorMessage}: ChatGptPlaygroundProps) => {
   const config = useApi(configApiRef)
   const baseUrl = config.getString('backend.baseUrl')
   const {state, dispatch} = React.useContext(PlaygroundContext);
 
-  const [error , setError] = React.useState<any>(null)
   const [loading , setLoading] = React.useState<boolean>(false)
   const [isSuccess , setIsSuccess] = React.useState<boolean>(false)
 
@@ -33,7 +33,7 @@ export const ChatGptPlayground = () => {
         .catch( e => {
             setLoading(false)
             setIsSuccess(false)
-            setError(e)
+            showErrorMessage()
         })
   }
 
@@ -52,7 +52,6 @@ export const ChatGptPlayground = () => {
                 resetForm={()=>resetPage()}
                 />
           <SettingsPanel/>
-          {error && (<div className="error">An error occurred. Please try again.</div>)}
       </div>
     )
 };
